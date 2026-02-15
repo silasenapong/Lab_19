@@ -106,22 +106,21 @@ int Unit::beAttacked(int oppatk)
 
 int Unit::heal()
 {
-	int heal = rand() % 21 + 10;
+	int heal_amount = rand() % 21 + 10;
+	int actual_heal;
 
-	if (hp >= hpmax)
+	if (hp + heal_amount > hpmax)
 	{
-		return 0;
-	}
-	else if (hp + heal >= hpmax)
-	{
-		hp += hpmax - heal;
-		return hpmax - hp;
+		actual_heal = hpmax - hp;
+		hp = hpmax;
 	}
 	else
 	{
-		hp += heal;
-		return heal;
+		actual_heal = heal_amount;
+		hp += heal_amount;
 	}
+
+	return actual_heal;
 }
 
 void Unit::guard()
