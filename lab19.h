@@ -108,16 +108,18 @@ int Unit::heal()
 {
 	int heal = rand() % 21 + 10;
 
-	if (hp == hpmax)
+	if (hp >= hpmax)
 	{
 		return 0;
 	}
 	else if (hp + heal >= hpmax)
 	{
+		hp += hpmax - heal;
 		return hpmax - hp;
 	}
 	else
 	{
+		hp += heal;
 		return heal;
 	}
 }
